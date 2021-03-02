@@ -93,9 +93,3 @@ url = "mailto:bahybintang@gmail.com"
   weight = 300
   identifier = "about"
   url = "/about/"
-
-  [[menu.main]]
-  name = "Contact"
-  weight = 400
-  identifier = "contact"
-  url = "/contact/"
