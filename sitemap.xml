@@ -2,10 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://byeol.my.id/about/</loc>
+    <lastmod>2021-03-02T05:13:04+07:00</lastmod>
+  </url><url>
     <loc>https://byeol.my.id/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
   </url><url>
     <loc>https://byeol.my.id/categories/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
+  </url><url>
+    <loc>https://byeol.my.id/tags/devops/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
+  </url><url>
+    <loc>https://byeol.my.id/tags/docker/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
+  </url><url>
+    <loc>https://byeol.my.id/post/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
+  </url><url>
+    <loc>https://byeol.my.id/post/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
   </url><url>
     <loc>https://byeol.my.id/tags/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
+  </url><url>
+    <loc>https://byeol.my.id/categories/web/</loc>
+    <lastmod>2020-04-20T05:07:28+07:00</lastmod>
   </url>
 </urlset>

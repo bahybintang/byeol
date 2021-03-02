@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" data-theme=""><head>
+    <title> Bintang Bahy | How I Configure My Blog (WordPress) using Docker and Deploy it to AWS </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="The more you learn, the less you know">
+    
+    <link rel="stylesheet"
+          href="https://byeol.my.id/css/style.min.0c643de4008adca329f7a2d616ce308cca99d4ef45e4cca307323e7857910194.css"
+          integrity="sha256-DGQ95ACK3KMp96LWFs4wjMqZ1O9F5MyjBzI&#43;eFeRAZQ="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="https://byeol.my.id/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+        integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="https://byeol.my.id/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://byeol.my.id/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://byeol.my.id/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://byeol.my.id/favicons/favicon-16x16.png">
+
+    <link rel="canonical" href="https://byeol.my.id/post/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="https://byeol.my.id/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js"
+            integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="https://byeol.my.id/js/anatole-theme-switcher.min.8ef71e0fd43f21a303733dbbecae5438b791d2b826c68a9883bd7aa459a076d2.js"
+                integrity="sha256-jvceD9Q/IaMDcz277K5UOLeR0rgmxoqYg716pFmgdtI="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://byeol.my.id/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="How I Configure My Blog (WordPress) using Docker and Deploy it to AWS"/>
+<meta name="twitter:description" content="Hello, this is my first post and I want to share something that I just learned."/>
+
+
+    
+    <meta property="og:title" content="How I Configure My Blog (WordPress) using Docker and Deploy it to AWS" />
+<meta property="og:description" content="Hello, this is my first post and I want to share something that I just learned." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://byeol.my.id/post/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/" /><meta property="og:image" content="https://byeol.my.id/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-20T05:07:28&#43;07:00" />
+<meta property="article:modified_time" content="2020-04-20T05:07:28&#43;07:00" /><meta property="og:site_name" content="Byeol" />
+
+
+</head>
+<body><div class="sidebar animated fadeInDown ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="https://byeol.my.id/images/profile.jpg" alt="profile picture">
+            <h3 title=""><a href="/">Byeol</a></h3>
+            <div class="description">
+                <p>The more you learn, the less you know</p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+            <li>
+                <a href="https://www.linkedin.com/in/bintangbahy/" rel="me" aria-label="Linkedin">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://github.com/bahybintang" rel="me" aria-label="GitHub">
+                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://www.instagram.com/bintangbahy/" rel="me" aria-label="instagram">
+                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="mailto:bahybintang@gmail.com" rel="me" aria-label="e-mail">
+                    <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Bintang Bahy  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  animated fadeInDown ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/post/"
+                        
+                   title="">Posts</a></li>
+        
+            
+            <li><a 
+                   href="/about/"
+                        
+                   title="">About</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  animated fadeInDown ">
+        <div class="post-content">
+            
+            <img class="post-thumbnail" src="https://byeol.my.id/images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/1.png" alt="Thumbnail image">
+            
+            <div class="post-title">
+                <h3>How I Configure My Blog (WordPress) using Docker and Deploy it to AWS</h3>
+                
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> Mon, Apr 20, 2020 
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">10-minute read</span>
+                    </div>
+                
+            </div>
+
+            <p>Hello, this is my first post and I want to share something that I just learned. Actually I am making this post just a few hours after I am done setting my server. So I’d like to share how I configure my server to run WordPress + NGINX + MySQL using Docker. Ok, lets get started 😉</p>
+<p>I’m inspired to create this post because of some article I read on how to install WordPress using docker-compose. The article I read is <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose">this article</a> from DigitalOcean.</p>
+<p>That article explained how to configure WordPress using docker in really good details. But I feel like maybe that article is too complicated and does not give you a way to automate your configuration. So in this post I will try 😉 to explained in simplified way, and guide you to automate the process of running WordPress using docker.</p>
+<p><strong>I’d like to divide this post into four parts:</strong></p>
+<ul>
+<li>Setting up our web server (AWS EC2)</li>
+<li>Setting up our domain name (Rumah Web)</li>
+<li>Configure our configuration files</li>
+<li>Run / deploy into your server</li>
+</ul>
+<h3 id="1-setting-up-our-server">1. Setting Up Our Server</h3>
+<p>In this post I will be using AWS EC2 Instance as our server, and I will be using t2.micro instance type (because this is what I get for AWS Free Tier 😉 ). I assume that you already have AWS account 🙁 .</p>
+<p>Ok, lets get to it!.</p>
+<h4 id="login-to-your-aws-console">Login to your AWS Console</h4>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/2.png" alt="login to aws"></p>
+<p>If you are successfully logged in, you should be greeted by that page. At first maybe it looks really complicated and scary (well at least for me 😀 ).</p>
+<p>I will not explain all the options because most of it is not related to this post (and I dont really know much about them 😀 ). So from this page you just click the <strong>Launch a virtual machine</strong> option.</p>
+<h4 id="choose-your-machine-image">Choose your machine image</h4>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/3.png" alt="choose machine image"></p>
+<p>In this process, you basically need to pick what OS you want to use as your server. You can choose any of the OS, but for the sake of simplicity I recommend you to use <strong>Amazon Linux 2 AMI (HVM), SSD Volume Type (64 bit x86)</strong>.</p>
+<p>Click select on your preffered OS, and you will be redirected to the next step.</p>
+<h4 id="review-your-configuration">Review your configuration</h4>
+<p>After you select the OS type that you want. You will be redirected to another page to confirm your configuration. In this post we will be leaving all of the configuration as default. So you should just click <strong>Review and Launch</strong>.</p>
+<p>After that you will be seeing another page asking you to review your configuration. You should just click <strong>Launch</strong>.</p>
+<h4 id="save-your-key-file">Save your key file</h4>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/4.png" alt="save key file"></p>
+<p>After you click <strong>Launch</strong>, there will be a modal popping up to ask you about the key you are gonna be using for your instance. This key will be needed if you want to connect to your machine.</p>
+<p>In that modal you will be asked to use <strong>existing key</strong> (if it’s exists) or <strong>create a new key pair</strong>. In this tutorial I will recommend you to make a new key pair, by choosing the option to <strong>create a new key pair</strong> on the dropdown.</p>
+<p>After that you should give your new key a name. This name does not really matter, but of course you should save it with a name that descriptive so you can easily locate the key for your instance.</p>
+<p>After you give it a name, download the key. Make sure you save it in a safe place that no other people can easily access.</p>
+<h4 id="launch-your-instance">Launch your instance</h4>
+<p>After downloading the key, the button to <strong>Launch Instances</strong> should be available, and of course you should click it 😉.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/5.png" alt="instance"></p>
+<p>Voila! your instance is now launching. You can click <strong>View Instances</strong> if you want to see your new instance status.</p>
+<h4 id="your-instance">Your instance</h4>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/6.png" alt="instance1"></p>
+<p>In your instance page, you can see all information about your instance like Public IP, Public DNS, and your instance status. This information will be usable for the next step when setting up your domain</p>
+<h4 id="setting-up-security-group">Setting up security group</h4>
+<p>After your instance successfully ran. You must configure your security group, so your instance can be accessed from the internet.</p>
+<p>Simply click your instance in instance page, and you will see instance information popping in the bottom of your page. On the right side of the <strong>Description</strong> tab, you can see security groups field.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/7.png" alt="security group"></p>
+<p>To configure your security groups, you can click on <strong>launch-wizard-x</strong>. You will be redirected to security groups configuration page. After that click your security groups id to advance to the next step.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/8.png" alt="security group 2"></p>
+<p>In this page you should see your security groups config. You can see that the default <strong>inbound rules</strong> (basically who can access your port X from the internet) is ssh which is used to connect to your machine later.</p>
+<p>In this step we should expose port 80 (HTTP) and port 443 (HTTPS) to the internet, because our application will be accessed from that port. So you can click <strong>Edit inbound rules</strong> to edit your inbound rules.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/9.png" alt="security group 3"></p>
+<p>You can add the above configuration to allow access from the internet to port 80 and 443. And the click <strong>Save Rules</strong>.</p>
+<h4 id="setting-up-your-instance">Setting up your instance</h4>
+<p>To setting up your instance, first you must be connected to your instance. One of the best way to connect to your instance is using SSH (Secure Shell).</p>
+<p>To connect to your instance, you can connect using the command provided by <strong>AWS Console</strong> on instance page. Yo can right click on your instance and then choose connect.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/10.png" alt=""></p>
+<p>There you can follow the instruction to connect to your instance. Make sure your current working directory is the same directory as where you save your key file.</p>
+<p>After you successfully logged in to your instance. There some apps that you need to install in order for you to configure your instance. You must install <strong>docker</strong> and some kind of text editor. In this tutorial I will use <strong>vim</strong>. Of course you can edit your configuration file in your local machine and then push it to repository, in that case you need to install <strong>git</strong> too. To install that dependency you can run this commands.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo yum install docker vim git
+</code></pre></div><p>After you successfully installed that dependencies, your instance is ready to rock! 🙂</p>
+<h3 id="2-setting-up-your-domain">2. Setting Up Your Domain</h3>
+<p>In this post I will you RumahWeb as my domain provider because its cheap. Of course you can use any domain provider that you like.</p>
+<h4 id="register-to-rumahweb">Register to RumahWeb</h4>
+<p>You can go too <a href="https://www.rumahweb.com/">https://www.rumahweb.com/</a>. In there you can search for the availability of your desired domain. And you can see your the pricing too.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/11.png" alt=""></p>
+<p>When you chosen your desired domain, you can then checkout and proceed with your payments.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/12.png" alt=""></p>
+<p>After you successfully paid you can see your domain is available in your dashboard. You click the <strong>domain</strong> tab and you will be redirected to domain configuration page.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/13.png" alt=""></p>
+<p>There you can see a list of domains that you own. You can <strong>click the wrench icon</strong> to configure your domain.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/14.png" alt=""></p>
+<p>You can see your domain information in this page. To further configure your domain, click on <strong>DNS Management</strong> in the sidebar.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/15.png" alt=""></p>
+<p>You must add a new record by clicking <strong>Add New Record</strong></p>
+<p>The first one that you must add is and <strong>A Record</strong> with your public IP as destination.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/16.png" alt=""></p>
+<p>You can replace <strong>your-ip</strong> with your AWS EC2 instance public IP. You can see that in your AWS Console.</p>
+<p>And the second one that you must add is <strong>CNAME Record</strong> pointing to your domain.</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/17.png" alt=""></p>
+<p>You can replace <strong>your-domain</strong> with you current domain that you are managing. And after that we finished setting up our domain. Yay 🙂</p>
+<h3 id="3-configure-our-configuration-files">3. Configure Our Configuration Files</h3>
+<p>We gonna make some configuration files so we can start WordPress in our server. You can make these files in your local machine then push it to git, or make it in your remote server (instance). In this post I will be using vim to edit our configuration files.</p>
+<h4 id="making-your-working-directory">Making your working directory</h4>
+<p>To make it easier to develop, so your files doesn’t get mixed with other files you can make your own working directory, and change directory to that directory. By running this command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir my-blog
+<span class="nb">cd</span> my-blog
+</code></pre></div><p>You can replace <strong>my-blog</strong> with any names you want.</p>
+<h4 id="making-docker-composestagingyml">Making docker-compose.staging.yml</h4>
+<p>This docker-compose file is gonna let you configure your staging container. This will getting your <strong>database</strong> and <strong>wordpress</strong> up, and start your <strong>nginx</strong> in staging environment. I’m not gonna be explaining the configuration in here in detail because you can see the detail explanation in <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose">DigitalOcean post</a>.</p>
+<p>First you must create the file and edit it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">touch docker-compose.staging.yml
+vim docker-compose.staging.yml
+</code></pre></div><p>To change to insert mode you can press <strong>I</strong> in your keyboard.</p>
+<p>And then paste this code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:8.0.19</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">dbdata:/var/lib/mysql</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;--default-authentication-plugin=mysql_native_password&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress:5.4.0-php7.4-fpm-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_HOST=db:3306</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_USER=$MYSQL_USER</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_NAME=$MYSQL_DATABASE</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress:/var/www/html</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">webserver</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.17.10-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">webserver</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress:/var/www/html</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./nginx-conf/nginx.staging.conf:/etc/nginx/conf.d/nginx.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">certbot-etc:/etc/letsencrypt</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">      
+</span><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">certbot-etc</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">dbdata</span><span class="p">:</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">app-network</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></code></pre></div><p>And to save you can press <strong>Esc</strong> then type <strong>:wq</strong> and then hit <strong>Enter</strong>.</p>
+<h4 id="making-docker-composeyml">Making docker-compose.yml</h4>
+<p>This docker-compose file is gonna be used to create you production environment. This will run the <strong>certbot</strong> to configure your SSL, and recreate <strong>nginx</strong> to the production environment.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">touch docker-compose.staging.yml
+vim docker-compose.staging.yml
+</code></pre></div><p>And paste this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:8.0.19</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">dbdata:/var/lib/mysql</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;--default-authentication-plugin=mysql_native_password&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress:5.4.0-php7.4-fpm-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_HOST=db:3306</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_USER=$MYSQL_USER</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD</span><span class="w">
+</span><span class="w">      </span>- <span class="l">WORDPRESS_DB_NAME=$MYSQL_DATABASE</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress:/var/www/html</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">webserver</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.17.10-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">webserver</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l">.env</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;443:443&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress:/var/www/html</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./nginx-conf/nginx.conf:/etc/nginx/conf.d/nginx.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./nginx-conf/options-ssl-nginx.conf:/etc/nginx/conf.d/options-ssl-nginx.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">certbot-etc:/etc/letsencrypt</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">app-network</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">certbot</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">webserver</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">certbot/certbot</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">certbot</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">certbot-etc:/etc/letsencrypt</span><span class="w">
+</span><span class="w">      </span>- <span class="l">wordpress:/var/www/html</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">certonly --webroot --webroot-path=/var/www/html --email $USER_EMAIL --agree-tos --no-eff-email --force-renewal -d $USER_DOMAIN -d www.$USER_DOMAIN</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">certbot-etc</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">dbdata</span><span class="p">:</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">app-network</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></code></pre></div><h4 id="making-nginxstagingconf">Making nginx.staging.conf</h4>
+<p>This configuration file is gonna be used for <strong>nginx</strong> to run in staging environment</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir -p nginx-conf
+touch nginx-conf/nginx.staging.conf
+vim nginx-conf/nginx.staging.conf
+</code></pre></div><p>And paste this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+        <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
+
+        <span class="kn">server_name</span> <span class="s">your.domain</span> <span class="s">www.your.domain</span><span class="p">;</span>
+
+        <span class="kn">index</span> <span class="s">index.php</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+
+        <span class="kn">root</span> <span class="s">/var/www/html</span><span class="p">;</span>
+
+        <span class="kn">location</span> <span class="p">~</span> <span class="sr">/.well-known/acme-challenge</span> <span class="p">{</span>
+                <span class="kn">allow</span> <span class="s">all</span><span class="p">;</span>
+                <span class="kn">root</span> <span class="s">/var/www/html</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+                <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="s">/index.php</span><span class="nv">$is_args$args</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+                <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+                <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
+                <span class="kn">fastcgi_pass</span> <span class="n">wordpress</span><span class="p">:</span><span class="mi">9000</span><span class="p">;</span>
+                <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+                <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+                <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+                <span class="kn">fastcgi_param</span> <span class="s">PATH_INFO</span> <span class="nv">$fastcgi_path_info</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kn">location</span> <span class="p">~</span> <span class="sr">/\.ht</span> <span class="p">{</span>
+                <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kn">location</span> <span class="p">=</span> <span class="s">/favicon.ico</span> <span class="p">{</span> 
+                <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> 
+        <span class="p">}</span>
+        <span class="kn">location</span> <span class="p">=</span> <span class="s">/robots.txt</span> <span class="p">{</span> 
+                <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> <span class="kn">allow</span> <span class="s">all</span><span class="p">;</span> 
+        <span class="p">}</span>
+        <span class="kn">location</span> <span class="p">~</span><span class="sr">*</span> <span class="s">\.(css|gif|ico|jpeg|jpg|js|png)</span>$ <span class="p">{</span>
+                <span class="kn">expires</span> <span class="s">max</span><span class="p">;</span>
+                <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>You should replace <strong>your.domain</strong> with your own domain name.</p>
+<h4 id="get-the-recommended-nginx-security-parameters-from-certbot">Get the recommended Nginx Security Parameters from Certbot</h4>
+<p>Run this command to download the configuration file from Certbot:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">curl -sSLo nginx-conf/options-ssl-nginx.conf https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf
+</code></pre></div><h4 id="making-runsh-to-automate-the-deploy-process">Making run.sh to Automate the Deploy Process</h4>
+<p>This <strong>run.sh</strong> bash script will automate the deployment process, but it is just basically some bash command put together. Of course you can invoke the command manually 🙂</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">touch run.sh
+vim run.sh
+</code></pre></div><p>And paste this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+docker-compose -f docker-compose.staging.yml up -d
+docker-compose up --no-deps certbot
+docker-compose stop webserver
+docker-compose up -d --force-recreate --no-deps webserver
+</code></pre></div><p>And dont forget to make it executable using this command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chmod +x run.sh
+</code></pre></div><p>This script will basically run the <strong>database</strong>, <strong>wordpress</strong>, and <strong>nginx</strong> in staging environment. And then run the <strong>certbot</strong> in production mode. This <strong>certbot</strong> will verify the domain by challenging the webserver (nginx). Note that at this state <strong>nginx</strong> is still in staging environment.</p>
+<p>If the <strong>certbot</strong> successfully confirming the domain, it will create an SSL configuration file in the docker volume <strong>certbot-etc</strong> which is mounted to <strong>/etc/letsencrypt</strong> in webserver (<strong>nginx</strong>) container.</p>
+<p>After the <strong>certbot</strong> successfully confirming the domain, the script will recreate the webserver (<strong>nginx</strong>) in production mode.</p>
+<h3 id="4-run--deploy-your-apps">4. Run / Deploy your Apps</h3>
+<p>To run your apps its actually very easy 🙂 . You just need to run the run.sh script.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./run.sh
+</code></pre></div><p>And voila! you just need a few minutes until your worpress blog is up. Now you can access your domain and proceed with WordPress famous 5 minutes install 🙂</p>
+<p><img src="../../images/how-i-configure-my-blog-wordpress-using-docker-and-deploy-it-to-aws/18.png" alt=""></p>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>This post is far from perfect, I’m too still learning. So I’m open to any suggestions.</li>
+<li>The method that is used in this post might not be the best way to configure WordPress. A lot of other method that is easier and achieve the same result.</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose">https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose</a></li>
+<li><a href="https://docs.aws.amazon.com/">https://docs.aws.amazon.com/</a></li>
+<li><a href="https://docs.docker.com/compose/">https://docs.docker.com/compose/</a></li>
+<li><a href="https://hub.docker.com/_/nginx">https://hub.docker.com/_/nginx</a></li>
+<li><a href="https://hub.docker.com/_/wordpress">https://hub.docker.com/_/wordpress</a></li>
+<li><a href="https://hub.docker.com/_/mysql">https://hub.docker.com/_/mysql</a></li>
+</ul>
+</div>
+        <div class="post-footer">
+            <div class="info">
+                <span class="separator"><a class="category" href="/categories/web/">Web</a></span>
+
+                <span class="separator"><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/devops/">devops</a></span>
+
+            </div>
+        </div>
+
+        
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="https://byeol.my.id/js/jquery.min.64d0083866906099f942140bc1c5cba4b1bf65783c52e4a63c5c46bf9dbc41f4.js"
+        integrity="sha256-ZNAIOGaQYJn5QhQLwcXLpLG/ZXg8UuSmPFxGv528QfQ="
+        crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript"
+        src="https://byeol.my.id/js/bundle.min.45159b0e20ba3878972e064b7edc464c31a9e35a0d0a6a71e3fec84efdbe2ea5.js"
+        integrity="sha256-RRWbDiC6OHiXLgZLftxGTDGp41oNCmpx4/7ITv2&#43;LqU="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+        src="https://byeol.my.id/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js"
+        integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w="
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
